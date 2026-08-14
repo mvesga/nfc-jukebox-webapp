@@ -90,6 +90,7 @@ export function Tags() {
 
       {(adding || editing) && (
         <TagForm
+          key={editing?.uid ?? 'new'}
           initial={editing ?? undefined}
           onSave={handleSave}
           onClose={() => { setAdding(false); setEditing(null); createMut.reset(); updateMut.reset() }}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { X } from 'lucide-react'
 import { fetchDevices, type NFCTag } from '../api/client'
@@ -16,11 +16,6 @@ const emptyTag = (): NFCTag => ({ uid: '', name: '', spotify_uri: '', volume: 70
 export function TagForm({ initial, onSave, onClose, isSaving, error }: Props) {
   const [form, setForm] = useState<NFCTag>(initial ?? emptyTag())
   const [uriError, setUriError] = useState('')
-
-  useEffect(() => {
-    setForm(initial ?? emptyTag())
-    setUriError('')
-  }, [initial])
 
   const { data: devices = [] } = useQuery({
     queryKey: ['devices'],
